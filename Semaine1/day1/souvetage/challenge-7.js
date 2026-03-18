@@ -3,7 +3,7 @@ let prenoms = ['ghali', 'mohsini','kamali','lokmani','charkaui'];
 function chercher(tableau, prenom){
   for(let i = 0 ; i < tableau.length ; i++){
     if(tableau[i] === prenom){
-        console.log("Trouvé à la position "+i);
+       return console.log("Trouvé à la position "+i);
     }
 
   }
