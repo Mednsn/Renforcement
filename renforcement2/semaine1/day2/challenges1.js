@@ -1,34 +1,47 @@
-let chansons = [
-  { "titre": "Blinding Lights", "artiste": "The Weeknd", "duree_secondes": 200, "genre": "Pop" },
-  { "titre": "Shape of You", "artiste": "Ed Sheeran", "duree_secondes": 233, "genre": "Pop" },
-  { "titre": "Bohemian Rhapsody", "artiste": "Queen", "duree_secondes": 354, "genre": "Rock" },
-  { "titre": "Lose Yourself", "artiste": "Eminem", "duree_secondes": 326, "genre": "Hip-Hop" },
-  { "titre": "Billie Jean", "artiste": "Michael Jackson", "duree_secondes": 294, "genre": "Pop" },
-  { "titre": "Smells Like Teen Spirit", "artiste": "Nirvana", "duree_secondes": 301, "genre": "Rock" },
-  { "titre": "Rolling in the Deep", "artiste": "Adele", "duree_secondes": 228, "genre": "Soul" },
-  { "titre": "HUMBLE.", "artiste": "Kendrick Lamar", "duree_secondes": 177, "genre": "Hip-Hop" },
-  { "titre": "Thinking Out Loud", "artiste": "Ed Sheeran", "duree_secondes": 281, "genre": "Pop" },
-  { "titre": "Levitating", "artiste": "Dua Lipa", "duree_secondes": 203, "genre": "Disco Pop" }
-]
-let i;
-let tableauRock = [];
-let minute,seconde;
-for(i = 0 ; i < chansons.length ; i++){
-    console.log(chansons[i].titre);
-    if(chansons[i].genre === "Rock"){
-        tableauRock.push(chansons[i]);
-    }
-    if(chansons[i].duree_secondes > 60){
-       minute = parseInt(chansons[i].duree_secondes/60);
-       
-       seconde = chansons[i].duree_secondes%60;
-       chansons[i].duree_secondes = String(minute+":"+seconde);
-      // console.log(chansons[i].duree_secondes)
-    }
-}
+const songs = [
+  { titre: "Song1", artiste: "Artist1", duree: 210, genre: "Rock" },
+  { titre: "Song2", artiste: "Artist2", duree: 180, genre: "Pop" },
+  { titre: "Song3", artiste: "Artist3", duree: 240, genre: "Jazz" },
+  { titre: "Song4", artiste: "Artist4", duree: 300, genre: "Rock" },
+  { titre: "Song5", artiste: "Artist5", duree: 150, genre: "Pop" },
+  { titre: "Song6", artiste: "Artist6", duree: 360, genre: "Classique" },
+  { titre: "Song7", artiste: "Artist7", duree: 200, genre: "Rock" },
+  { titre: "Song8", artiste: "Artist8", duree: 170, genre: "Jazz" },
+  { titre: "Song9", artiste: "Artist9", duree: 220, genre: "Pop" },
+  { titre: "Song10", artiste: "Artist10", duree: 260, genre: "Rock" }
+];
 
-console.log("****************************");
-console.log(tableauRock);
-console.log("****************************");
-console.log(chansons);
-console.log("****************************");
+const titres = songs.map(song => song.titre);
+console.log("Titres:", titres);
+
+const rockSongs = songs.filter(song => song.genre === "Rock");
+console.log("Rock:", rockSongs);
+
+const formattedSongs = songs.map(song => {
+  const minutes = Math.floor(song.duree / 60);
+  const secondes = song.duree % 60;
+  return {
+    ...song,
+    dureeFormat: `${minutes}:${secondes.toString().padStart(2, '0')}`
+  };
+});
+console.log("Durées formatées:", formattedSongs);
+
+const totalSeconds = songs.reduce((sum, song) => sum + song.duree, 0);
+const totalMinutes = Math.floor(totalSeconds / 60);
+const remainingSeconds = totalSeconds % 60;
+console.log(`Durée totale: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`);
+
+const longestSong = songs.reduce((max, song) => 
+  song.duree > max.duree ? song : max
+);
+console.log("Plus longue:", longestSong);
+
+const allLessThan6Min = songs.every(song => song.duree < 360);
+console.log("Toutes < 6 min:", allLessThan6Min);
+
+const hasJazz = songs.some(song => song.genre === "Jazz");
+console.log("Au moins une Jazz:", hasJazz);
+
+const sortedSongs = [...songs].sort((a, b) => a.duree - b.duree);
+console.log("Triées:", sortedSongs);
