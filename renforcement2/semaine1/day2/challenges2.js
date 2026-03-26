@@ -13,39 +13,51 @@ const ventes = [
   { mois: "Décembre", ca: 90000, clients: 250, ville: "Casablanca" }
 ];
 
-const totalCA = ventes.reduce((sum, v) => sum + v.ca, 0);
-console.log("Total CA:", totalCA);
+let chiffre_affaires_total = ventes.reduce((sum,vente)=> sum + vente.ca,0);
+console.log("- chiffre d'affaires total : {{ "+chiffre_affaires_total+"}}");
+console.log("--------------------------------------------------------")
+console.log("- le chiffre d'affaires moyen par mois : {{ "+chiffre_affaires_total/12+"}}");
+console.log("--------------------------------------------------------")
+let meilleur = ventes.reduce((max,vente)=> vente.ca > max.ca ? vente:max);
+console.log("- le mois avec le meilleur chiffre d'affaires : {{ "+meilleur.mois+"}}");
+console.log("--------------------------------------------------------")
+let moins = ventes.reduce((min,vente)=> vente.clients < min.clients ? vente:min);
+console.log("- le mois avec le moins de clients : {{ "+moins.mois+"}}");
+console.log("------------------tableu plus de 50000 --------------------------------")
+let nouveauTab = ventes.filter(vente => vente.ca > 50000);
+console.log(nouveauTab);
+console.log("--------------------------------------------------------")
+const tabVille = [];
+ventes.forEach(vente =>{
 
-const moyenneCA = totalCA / ventes.length;
-console.log("Moyenne CA:", moyenneCA);
-
-const meilleur = ventes.reduce((max, v) => v.ca > max.ca ? v : max);
-console.log("Meilleur mois:", meilleur);
-
-const moinsClients = ventes.reduce((min, v) => v.clients < min.clients ? v : min);
-console.log("Moins de clients:", moinsClients);
-
-const grosMois = ventes.filter(v => v.ca > 50000);
-console.log("Mois > 50k:", grosMois);
-
-const resumeVille = {};
-ventes.forEach(v => {
-  if (!resumeVille[v.ville]) {
-    resumeVille[v.ville] = { totalCA: 0, totalClients: 0 };
+  if(!tabVille[vente.ville]){
+    
+    tabVille[vente.ville] = { totalCA : 0, totalClients : 0};
   }
-  resumeVille[v.ville].totalCA += v.ca;
-  resumeVille[v.ville].totalClients += v.clients;
-});
-console.log("Résumé par ville:", resumeVille);
+  tabVille[vente.ville].totalCA += vente.ca;
+  tabVille[vente.ville].totalClients += vente.clients;
+})
+console.log(tabVille);
+console.log("--------------------------------------------------------")
+let tabTri = ventes.sort((vente1,vente2)=> vente2.ca - vente1.ca );
+console.log(tabTri);
+console.log("--------------------------------------------------------")
+ventes.forEach((element,index)=>{
+  if(index >= 1){
+  console.log(`- la croissance entre mois ${index} et ${index+1} : ${element.ca-ventes[index-1].ca}`);
+  }
+})
 
-const trie = [...ventes].sort((a, b) => b.ca - a.ca);
-console.log("Tri décroissant:", trie);
 
-const croissance = ventes.map((v, i, arr) => {
-  if (i === 0) return { mois: v.mois, croissance: 0 };
-  return {
-    mois: v.mois,
-    croissance: v.ca - arr[i - 1].ca
-  };
-});
-console.log("Croissance:", croissance);
+
+
+
+
+
+
+
+
+
+
+
+

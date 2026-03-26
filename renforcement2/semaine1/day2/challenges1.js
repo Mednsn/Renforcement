@@ -13,21 +13,19 @@ let chansons = [
 let i;
 let tableauRock = [];
 let minute,seconde;
-// for(i = 0 ; i < chansons.length ; i++){
-//     console.log(chansons[i].titre);
-//     if(chansons[i].genre === "Rock"){
-//         tableauRock.push(chansons[i]);
-//     }
-//     if(chansons[i].duree_secondes > 60){
-//        minute = parseInt(chansons[i].duree_secondes/60);
+for(i = 0 ; i < chansons.length ; i++){
+    console.log(chansons[i].titre);
+    if(chansons[i].genre === "Rock"){
+        tableauRock.push(chansons[i]);
+    }
+    if(chansons[i].duree_secondes > 60){
+       minute = parseInt(chansons[i].duree_secondes/60);
        
-//        seconde = chansons[i].duree_secondes%60;
-//        chansons[i].duree_secondes = String(minute+":"+seconde);
-//       // console.log(chansons[i].duree_secondes)
-//     }
-// }
-
-
+       seconde = chansons[i].duree_secondes%60;
+       chansons[i].duree_secondes = String(minute+":"+seconde);
+      // console.log(chansons[i].duree_secondes)
+    }
+}
 
 console.log("****************************");
 console.log(tableauRock);
