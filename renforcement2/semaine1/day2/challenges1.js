@@ -11,37 +11,55 @@ const songs = [
   { titre: "Song10", artiste: "Artist10", duree: 260, genre: "Rock" }
 ];
 
-const titres = songs.map(song => song.titre);
-console.log("Titres:", titres);
+let TabTitres = songs.map(TabTitre => TabTitre.titre);
+console.log("titre : "+TabTitres);
+ console.log("===========================================================");
+let TabRock = songs.filter(TabTitre => TabTitre.genre === "Rock");
+console.log(TabRock);
+ console.log("===========================================================");
+let minute,secondes;
 
-const rockSongs = songs.filter(song => song.genre === "Rock");
-console.log("Rock:", rockSongs);
+let songk = songs.map(song=>{
+minute = parseInt(song.duree/60);
+secondes = song.duree % 60;
+return {
+  ...song,
+  duree : `${minute}:${secondes}`
+}
+})
+console.log(songk);
+ console.log("===========================================================");
 
-const formattedSongs = songs.map(song => {
-  const minutes = Math.floor(song.duree / 60);
-  const secondes = song.duree % 60;
-  return {
-    ...song,
-    dureeFormat: `${minutes}:${secondes.toString().padStart(2, '0')}`
-  };
+let totalDuree = songs.reduce((sum,song)=>sum + song.duree,0);
+minute = parseInt(totalDuree/60);
+secondes = totalDuree%60;
+console.log(`la duree est ${minute}:${secondes}`);
+ console.log("===========================================================");
+let tabLongsong = songs.reduce((song1,song2)=>song1.duree > song2.duree ? song1:song2);
+console.log(tabLongsong);
+ console.log("===========================================================");
+let isfind= "not found";
+songs.forEach((song,index)=>{
+    minute = parseInt(song.duree/60);
+      let k=index+1;
+    if(minute<6){
+      console.log("song "+k+" est moins de 6 minutes.");
+    }else{
+       console.log("{{-->>>> song "+k+" est plus de 6 minutes <<<--}}");
+    }
+    if(song.genre === "Jazz"){
+      isfind = " there is one at list";
+    }
 });
-console.log("Durées formatées:", formattedSongs);
+ console.log("===========================================================");
+console.log(isfind);
+ console.log("===========================================================");
+let TabTri = songs.sort((songs1,songs2)=>songs1.duree - songs2.duree);
+console.log(TabTri)
 
-const totalSeconds = songs.reduce((sum, song) => sum + song.duree, 0);
-const totalMinutes = Math.floor(totalSeconds / 60);
-const remainingSeconds = totalSeconds % 60;
-console.log(`Durée totale: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`);
 
-const longestSong = songs.reduce((max, song) => 
-  song.duree > max.duree ? song : max
-);
-console.log("Plus longue:", longestSong);
 
-const allLessThan6Min = songs.every(song => song.duree < 360);
-console.log("Toutes < 6 min:", allLessThan6Min);
 
-const hasJazz = songs.some(song => song.genre === "Jazz");
-console.log("Au moins une Jazz:", hasJazz);
 
-const sortedSongs = [...songs].sort((a, b) => a.duree - b.duree);
-console.log("Triées:", sortedSongs);
+
+
