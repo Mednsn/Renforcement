@@ -20,17 +20,23 @@ const moyenne = (avis.reduce((sum, a) => sum + a.note, 0) / avis.length).toFixed
 console.log("Moyenne:", moyenne);
 
 const countNotes = {};
+
 avis.forEach(a => {
-  countNotes[a.note] = (countNotes[a.note] || 0) + 1;
+  if (!countNotes[a.note]) {
+    countNotes[a.note] = 0;
+  }
+
+  countNotes[a.note] += 1;
 });
-console.log("Count notes:", countNotes);
+
+console.log(countNotes);
 
 const positifs = avis.filter(a => a.note >= 4);
 const negatifs = avis.filter(a => a.note <= 2);
 const neutres = avis.filter(a => a.note === 3);
 
 console.log("Positifs:", positifs.length);
-console.log("Négatifs:", negatifs.length);
+console.log("Negatifs:", negatifs.length);
 console.log("Neutres:", neutres.length);
 
 const tries = [...avis].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -39,7 +45,4 @@ console.log("Tri date:", tries);
 const plusLong = avis.reduce((max, a) =>
   a.commentaire.length > max.commentaire.length ? a : max
 );
-console.log("Plus long avis:", plusLong);
-
-const resume = `${moyenne}/5 basé sur ${avis.length} avis — ${positifs.length} positifs, ${negatifs.length} négatifs, ${neutres.length} neutres`;
-console.log("Résumé:", resume);
+console.log("plus long avis: ", plusLong);
