@@ -74,9 +74,9 @@ if (contactToUpdate) {
     ville: "Fes",
     pays: "Maroc"
   };
-  contactToUpdate.ville = "Fès";
+  contactToUpdate.ville = "Fes";
 }
-console.log("Après modification:", contactToUpdate);
+console.log("Apres modification:", contactToUpdate);
 
 contacts.forEach(c => {
   c.dernierContact = new Date(Date.now() - Math.random() * 60 * 24 * 60 * 60 * 1000);

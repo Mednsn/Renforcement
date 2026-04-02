@@ -96,7 +96,7 @@ function retirerAnnonce(id)
 
 function rechercher()
 {
-  return TabAnnonces.filter(annonce => annonce.prix < 100 || annonce.etate === "très bon" || annonce.category === "electronique");
+  return TabAnnonces.filter(annonce => annonce.prix < 100 || annonce.etate === "tres bon" || annonce.category === "electronique");
 }
 
 function triByPrix()

@@ -51,11 +51,11 @@ songs.forEach((song,index)=>{
       isfind = " there is one at list";
     }
 });
- console.log("===========================================================");
 console.log(isfind);
  console.log("===========================================================");
-let TabTri = songs.sort((songs1,songs2)=>songs1.duree - songs2.duree);
-console.log(TabTri)
+ let TabTri = songs.sort((songs1,songs2)=>songs1.duree - songs2.duree);
+ console.log(TabTri)
+ console.log("===========================================================");
 
 
 
